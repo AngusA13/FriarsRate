@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,16 +9,16 @@
 :root{color-scheme:dark;--bg:#07140d;--panel:#102219;--panel2:#152c20;--line:#294936;--text:#f1f8f3;--muted:#a5b8aa;--green:#68efa0;--gold:#ffd166;--red:#ff8585}
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(ellipse at 85% 0%,#19452b 0,transparent 35%),var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
-button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:3px}
 .wrap{width:min(1120px,calc(100% - 32px));margin:auto}
 header{position:sticky;top:0;z-index:5;background:#07140dee;backdrop-filter:blur(14px);border-bottom:1px solid #ffffff15}
-.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:15px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-size:23px;font-weight:850;letter-spacing:-1px}
 .logo{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(145deg,#91ffb8,#189a54);color:#082013;font-size:25px}
 .brand span span{color:var(--green)}
-.navright{display:flex;align-items:center;gap:14px}.status{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px}.dot{width:8px;height:8px;border-radius:50%;background:#e9bb5a}.dot.online{background:var(--green)}
+.navright{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.status{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px}.dot{width:8px;height:8px;border-radius:50%;background:#e9bb5a}.dot.online{background:var(--green)}
 .btn{border:1px solid var(--line);background:#172b1e;color:var(--text);padding:10px 15px;border-radius:12px;font-weight:750;transition:.18s}
-.btn:hover{border-color:#65c981;transform:translateY(-1px)}.primary{background:var(--green);border-color:var(--green);color:#082013}.primary:hover{background:#91f7b5}.btn:disabled{opacity:.55;cursor:wait;transform:none}
+.btn:hover{border-color:#65c981;transform:translateY(-1px)}.primary{background:var(--green);border-color:var(--green);color:#082013}.primary:hover{background:#91f7b5}.btn:disabled{opacity:.55;cursor:wait;transform:none}.danger{border-color:#814343;background:#351b1b;color:#ffc4c4}.danger:hover{border-color:#ff8585}
 .hero{padding:62px 0 43px;display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center}
 .eyebrow{display:inline-block;color:var(--green);background:#12351f;border:1px solid #326945;border-radius:30px;padding:7px 12px;font-size:11px;letter-spacing:1.5px;font-weight:850}
 h1{font-size:clamp(42px,6vw,68px);line-height:1.04;letter-spacing:-3px;margin:21px 0 17px}h1 em{font-style:normal;color:var(--green)}
@@ -36,7 +35,7 @@ section{padding:25px 0 65px}.sectionhead{display:flex;justify-content:space-betw
 .teacher-top{display:flex;gap:12px;align-items:center}.avatar{width:48px;height:48px;flex-shrink:0;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,#2c6540,#153321);border:1px solid #40764f;color:#d3ffe0;font-weight:850;font-size:17px}
 .teacher h3{margin:0;font-size:17px;overflow-wrap:anywhere}.subject{font-size:12px;color:var(--muted);margin-top:3px;overflow-wrap:anywhere}
 .ratingline{display:flex;align-items:center;gap:8px;margin:18px 0 10px}.stars{color:var(--gold);letter-spacing:1px;white-space:nowrap}.score{font-size:20px;font-weight:850}.count{font-size:12px;color:var(--muted)}
-.description{color:#c0d1c5;font-size:13px;min-height:40px;margin:0 0 17px;overflow-wrap:anywhere}.cardactions{display:flex;gap:8px}.cardactions button{flex:1;padding:9px 7px;font-size:13px}
+.description{color:#c0d1c5;font-size:13px;min-height:40px;margin:0 0 17px;overflow-wrap:anywhere}.cardactions{display:flex;gap:8px;flex-wrap:wrap}.cardactions button{flex:1;padding:9px 7px;font-size:13px;min-width:100px}
 .empty{grid-column:1/-1;text-align:center;padding:40px 18px;border:1px dashed #35583f;border-radius:20px;color:var(--muted)}.empty h3{color:var(--text);margin:0 0 6px}.empty p{margin:0 0 16px}
 .notice{display:flex;gap:12px;margin-top:23px;padding:15px;border:1px solid #31543a;border-radius:15px;background:#10251a;color:#b9cbbd;font-size:12px}
 footer{border-top:1px solid #ffffff13;padding:25px 0 35px;color:#879b8c;font-size:12px}.footerrow{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
@@ -53,7 +52,7 @@ footer{border-top:1px solid #ffffff13;padding:25px 0 35px;color:#879b8c;font-siz
 .reviewlist{display:grid;gap:12px}.reviewitem{border:1px solid #294a35;background:#102218;border-radius:15px;padding:15px}.reviewtop{display:flex;justify-content:space-between;align-items:center;gap:10px}.reviewtop time{font-size:11px;color:var(--muted)}.reviewtext{white-space:pre-wrap;overflow-wrap:anywhere;color:#d5e3d9;margin:10px 0}.reviewmeta{display:flex;gap:7px;flex-wrap:wrap}.reviewmeta span{font-size:11px;border:1px solid #31543a;border-radius:8px;padding:4px 7px;color:#c0d8c7}
 .reportrow{display:flex;justify-content:flex-end;margin-top:12px}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;z-index:60;background:#173b25;border:1px solid #4c9861;border-radius:12px;padding:12px 18px;transition:.2s;max-width:90%;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
 @media(max-width:850px){.hero{grid-template-columns:1fr;padding-top:45px}.hero-card{max-width:520px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){.wrap{width:calc(100% - 24px)}.nav{height:65px}.brand{font-size:19px}.status{display:none}.navright .btn{padding:9px 10px}.hero{padding:38px 0 24px;gap:23px}h1{font-size:43px;letter-spacing:-2px}.hero p{font-size:15px}.hero-card{padding:19px}.sectionhead{align-items:flex-start;flex-direction:column}.sectionhead h2{font-size:26px}.grid{grid-template-columns:1fr}.teacher{padding:17px}.description{min-height:0}.formgrid{grid-template-columns:1fr}.fieldgroup.full{grid-column:auto}.modalbody{padding:16px}.modalhead{padding:15px 16px}.modalfoot{flex-direction:column-reverse}.modalfoot button{width:100%}}
+@media(max-width:560px){.wrap{width:calc(100% - 24px)}.nav{padding:10px 0;align-items:flex-start}.brand{font-size:19px}.status{display:none}.navright .btn{padding:9px 10px}.hero{padding:38px 0 24px;gap:23px}h1{font-size:43px;letter-spacing:-2px}.hero p{font-size:15px}.hero-card{padding:19px}.sectionhead{align-items:flex-start;flex-direction:column}.sectionhead h2{font-size:26px}.grid{grid-template-columns:1fr}.teacher{padding:17px}.description{min-height:0}.formgrid{grid-template-columns:1fr}.fieldgroup.full{grid-column:auto}.modalbody{padding:16px}.modalhead{padding:15px 16px}.modalfoot{flex-direction:column-reverse}.modalfoot button{width:100%}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -61,7 +60,11 @@ footer{border-top:1px solid #ffffff13;padding:25px 0 35px;color:#879b8c;font-siz
 <header>
   <div class="wrap nav">
     <a class="brand" href="#"><span class="logo">★</span><span>Friars<span>Rate</span></span></a>
-    <div class="navright"><div class="status"><span class="dot" id="statusDot"></span><span id="apiStatus">Connecting…</span></div><button class="btn primary" id="addTop">+ Add teacher</button></div>
+    <div class="navright">
+      <div class="status"><span class="dot" id="statusDot"></span><span id="apiStatus">Connecting…</span></div>
+      <button class="btn" id="myProfilesButton">My Profiles</button>
+      <button class="btn primary" id="addTop">+ Add teacher</button>
+    </div>
   </div>
 </header>
 
@@ -80,6 +83,16 @@ footer{border-top:1px solid #ffffff13;padding:25px 0 35px;color:#879b8c;font-siz
     <div style="display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:8px"><span>Shared community feedback</span><span style="color:var(--green)">Live directory ↗</span></div>
   </aside>
 </div>
+
+<section class="wrap" id="myProfilesSection">
+  <div class="sectionhead">
+    <div><h2>My Profiles</h2><p>Profiles you added using this browser are saved here.</p></div>
+    <button class="btn" id="refreshMyProfiles">↻ Refresh</button>
+  </div>
+  <div class="grid" id="myProfilesGrid">
+    <div class="empty"><h3>No saved profiles yet</h3><p>Profiles you add will appear here.</p></div>
+  </div>
+</section>
 
 <section class="wrap" id="directory">
   <div class="sectionhead"><div><h2>Teacher directory</h2><p>Search by teacher name or subject.</p></div><button class="btn" id="refresh">↻ Refresh</button></div>
@@ -150,6 +163,7 @@ footer{border-top:1px solid #ffffff13;padding:25px 0 35px;color:#879b8c;font-siz
 const API = "https://friarsrate-api.allena.workers.dev/";
 const $ = id => document.getElementById(id);
 const state = {teachers:[],ratings:{overall:0,teaching:0,helpfulness:0,organisation:0},selectedTeacher:null,loading:false};
+const MY_PROFILES_KEY = "friarsrate_my_profiles_v1";
 let toastTimer;
 
 function esc(value){
@@ -197,6 +211,72 @@ async function api(path,options={}){
  if(!response.ok)throw new Error(data.error||data.message||`Server error (${response.status})`);
  return data;
 }
+
+function getMyProfiles(){
+ try{
+  const value=JSON.parse(localStorage.getItem(MY_PROFILES_KEY)||"[]");
+  return Array.isArray(value)?value:[];
+ }catch{return [];}
+}
+function saveMyProfiles(profiles){
+ try{
+  localStorage.setItem(MY_PROFILES_KEY,JSON.stringify(profiles));
+  renderMyProfiles();
+ }catch{
+  showToast("Couldn't save My Profiles. Check browser storage settings.");
+ }
+}
+function renderMyProfiles(){
+ const grid=$("myProfilesGrid");
+ if(!grid)return;
+ const profiles=getMyProfiles();
+ if(!profiles.length){
+  grid.innerHTML='<div class="empty"><h3>No saved profiles yet</h3><p>Profiles you add will appear here in this browser.</p></div>';
+  return;
+ }
+ grid.innerHTML=profiles.map(p=>`
+  <article class="teacher">
+   <div class="teacher-top"><div class="avatar">${esc(initials(p.name))}</div><div style="min-width:0"><h3>${esc(p.name)}</h3><div class="subject">${esc(p.subjects||"Subjects not specified")}</div></div></div>
+   <p class="description">${esc(p.description||"Your saved teacher profile.")}</p>
+   <div class="cardactions"><button class="btn" data-my-view="${esc(p.id)}">View profile</button><button class="btn danger" data-my-remove="${esc(p.id)}">Take Down</button></div>
+  </article>`).join("");
+ grid.querySelectorAll("[data-my-view]").forEach(button=>{
+  button.addEventListener("click",async()=>{
+   const id=button.dataset.myView;
+   $("search").value="";
+   $("directory").scrollIntoView({behavior:"smooth"});
+   await loadTeachers();
+   await openProfile(id);
+  });
+ });
+ grid.querySelectorAll("[data-my-remove]").forEach(button=>{
+  button.addEventListener("click",()=>takeDownProfile(button.dataset.myRemove));
+ });
+}
+async function takeDownProfile(id){
+ const profiles=getMyProfiles();
+ const profile=profiles.find(p=>String(p.id)===String(id));
+ if(!profile||!profile.token){
+  showToast("No saved removal token exists for this profile.");
+  return;
+ }
+ if(!confirm(`Take down "${profile.name}" from the shared directory? Its reviews and reports will also be deleted. This cannot be undone.`))return;
+ try{
+  await api("/api/teachers/"+encodeURIComponent(id),{
+   method:"DELETE",
+   body:JSON.stringify({removal_token:profile.token})
+  });
+  saveMyProfiles(profiles.filter(p=>String(p.id)!==String(id)));
+  await loadTeachers();
+  showToast("Profile taken down from the shared directory.");
+ }catch(err){showToast(err.message||"Could not take down the profile.");}
+}
+$("myProfilesButton").addEventListener("click",()=>{
+ $("myProfilesSection").scrollIntoView({behavior:"smooth"});
+ renderMyProfiles();
+});
+$("refreshMyProfiles").addEventListener("click",renderMyProfiles);
+
 function avg(t){
  const n=Number(t.average_rating??t.average??t.avg_rating??0);
  return Number.isFinite(n)?n:0;
@@ -261,10 +341,7 @@ $("searchBtn").addEventListener("click",loadTeachers);
 let searchTimer;
 $("search").addEventListener("input",()=>{
  clearTimeout(searchTimer);
- searchTimer=setTimeout(()=>{
-  /* Search the API so newly added teachers are included. */
-  loadTeachers();
- },250);
+ searchTimer=setTimeout(()=>loadTeachers(),250);
 });
 $("year").textContent=new Date().getFullYear();
 
@@ -274,23 +351,34 @@ $("teacherForm").addEventListener("submit",async e=>{
  if(name.length<2){setMessage("teacherMessage","Please enter a teacher name.");return;}
  $("teacherSubmit").disabled=true;$("teacherSubmit").textContent="Adding…";
  try{
-  /* Check the shared directory for an existing matching name. */
   const check=await api("/api/teachers?q="+encodeURIComponent(name));
   const found=(check.teachers||[]).some(t=>String(t.name||"").trim().toLowerCase()===name.toLowerCase());
   if(found){setMessage("teacherMessage","A teacher with this name already exists. Search for their profile instead.");return;}
+
+  const removalToken=Array.from(
+   crypto.getRandomValues(new Uint8Array(32)),
+   b=>b.toString(16).padStart(2,"0")
+  ).join("");
+  const subjects=$("teacherSubjects").value.trim();
+  const description=$("teacherDescription").value.trim();
+
   const result=await api("/api/teachers",{
    method:"POST",
-   body:JSON.stringify({
-    name,
-    subjects:$("teacherSubjects").value.trim(),
-    description:$("teacherDescription").value.trim()
-   })
+   body:JSON.stringify({name,subjects,description,removal_token:removalToken})
   });
-  closeModal("teacherOverlay");showToast("Teacher profile added!");
+
+  const id=result.teacher?.id??result.id;
+  if(id!==undefined&&id!==null){
+   const profiles=getMyProfiles();
+   profiles.push({id:String(id),name,subjects,description,token:removalToken,savedAt:new Date().toISOString()});
+   saveMyProfiles(profiles);
+  }
+
+  closeModal("teacherOverlay");showToast("Teacher profile added and saved to My Profiles!");
   $("search").value="";
   await loadTeachers();
-  const id=result.teacher?.id??result.id;
-  if(id!==undefined&&id!==null)openProfile(String(id));
+  renderMyProfiles();
+  if(id!==undefined&&id!==null)await openProfile(String(id));
  }catch(err){setMessage("teacherMessage",err.message||"Couldn't add the teacher.");}
  finally{$("teacherSubmit").disabled=false;$("teacherSubmit").textContent="Add teacher profile";}
 });
@@ -409,11 +497,12 @@ $("reportForm").addEventListener("submit",async e=>{
   const teacherId=state.selectedTeacher?.id;
   if(teacherId!==undefined)await loadReviews(teacherId);
   await loadTeachers();
- }catch(err){setMessage("reportMessage",err.message||"Couldn't submit the report.");}
+ }catch(err){setMessage("reportMessage",err.message||"Couldn't submit your report.");}
  finally{$("reportSubmit").disabled=false;$("reportSubmit").textContent="Submit report";}
 });
 
 /* Initial connection */
+renderMyProfiles();
 loadTeachers();
 </script>
 </body>

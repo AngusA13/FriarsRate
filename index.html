@@ -377,7 +377,7 @@ $("reviewForm").addEventListener("submit",async e=>{
    method:"POST",
    body:JSON.stringify({
     teacher_id:$("reviewTeacherId").value,
-    overall_rating:state.ratings.overall,
+    rating:Number(state.ratings.overall),
     teaching_rating:state.ratings.teaching,
     helpfulness_rating:state.ratings.helpfulness,
     organisation_rating:state.ratings.organisation,

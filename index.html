@@ -1,0 +1,420 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07140d">
+<title>FriarsRate — Teacher Reviews</title>
+<style>
+:root{color-scheme:dark;--bg:#07140d;--panel:#102219;--panel2:#152c20;--line:#294936;--text:#f1f8f3;--muted:#a5b8aa;--green:#68efa0;--gold:#ffd166;--red:#ff8585}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 85% 0%,#19452b 0,transparent 35%),var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+header{position:sticky;top:0;z-index:5;background:#07140dee;backdrop-filter:blur(14px);border-bottom:1px solid #ffffff15}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-size:23px;font-weight:850;letter-spacing:-1px}
+.logo{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(145deg,#91ffb8,#189a54);color:#082013;font-size:25px}
+.brand span span{color:var(--green)}
+.navright{display:flex;align-items:center;gap:14px}.status{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px}.dot{width:8px;height:8px;border-radius:50%;background:#e9bb5a}.dot.online{background:var(--green)}
+.btn{border:1px solid var(--line);background:#172b1e;color:var(--text);padding:10px 15px;border-radius:12px;font-weight:750;transition:.18s}
+.btn:hover{border-color:#65c981;transform:translateY(-1px)}.primary{background:var(--green);border-color:var(--green);color:#082013}.primary:hover{background:#91f7b5}.btn:disabled{opacity:.55;cursor:wait;transform:none}
+.hero{padding:62px 0 43px;display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center}
+.eyebrow{display:inline-block;color:var(--green);background:#12351f;border:1px solid #326945;border-radius:30px;padding:7px 12px;font-size:11px;letter-spacing:1.5px;font-weight:850}
+h1{font-size:clamp(42px,6vw,68px);line-height:1.04;letter-spacing:-3px;margin:21px 0 17px}h1 em{font-style:normal;color:var(--green)}
+.hero p{color:var(--muted);font-size:17px;max-width:580px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.hero-card{padding:25px;border:1px solid #315840;border-radius:24px;background:linear-gradient(145deg,#173a25,#0b1c12);box-shadow:0 20px 60px #0004}
+.hero-card h3{margin:0;font-size:17px}.pill{color:var(--green);font-size:10px;border:1px solid #386d49;padding:5px 8px;border-radius:20px;font-weight:850}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}.stat{background:#08170f;border:1px solid #ffffff13;border-radius:15px;padding:17px}.stat strong{font-size:29px;display:block;letter-spacing:-1px}.stat span{color:var(--muted);font-size:12px}
+.bars{display:flex;align-items:end;gap:7px;height:52px;margin-top:20px}.bars i{flex:1;border-radius:5px 5px 2px 2px;background:linear-gradient(#79f6a8,#16844a)}.bars i:nth-child(1){height:35%}.bars i:nth-child(2){height:55%}.bars i:nth-child(3){height:44%}.bars i:nth-child(4){height:75%}.bars i:nth-child(5){height:60%}.bars i:nth-child(6){height:92%}.bars i:nth-child(7){height:70%}.bars i:nth-child(8){height:100%}
+section{padding:25px 0 65px}.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:22px}.sectionhead h2{font-size:30px;letter-spacing:-1px;margin:0 0 4px}.sectionhead p{margin:0;color:var(--muted)}
+.searchrow{display:flex;gap:10px;margin-bottom:20px}.search{flex:1;min-width:0;background:#0d1e13;border:1px solid var(--line);color:var(--text);border-radius:13px;padding:13px 15px}.search:focus{border-color:var(--green);outline:none}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.teacher{border:1px solid #294b35;background:linear-gradient(150deg,#13291b,#0c1a11);border-radius:19px;padding:19px;min-width:0;transition:.18s;animation:appear .25s ease both}.teacher:hover{transform:translateY(-3px);border-color:#579568}
+@keyframes appear{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.teacher-top{display:flex;gap:12px;align-items:center}.avatar{width:48px;height:48px;flex-shrink:0;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,#2c6540,#153321);border:1px solid #40764f;color:#d3ffe0;font-weight:850;font-size:17px}
+.teacher h3{margin:0;font-size:17px;overflow-wrap:anywhere}.subject{font-size:12px;color:var(--muted);margin-top:3px;overflow-wrap:anywhere}
+.ratingline{display:flex;align-items:center;gap:8px;margin:18px 0 10px}.stars{color:var(--gold);letter-spacing:1px;white-space:nowrap}.score{font-size:20px;font-weight:850}.count{font-size:12px;color:var(--muted)}
+.description{color:#c0d1c5;font-size:13px;min-height:40px;margin:0 0 17px;overflow-wrap:anywhere}.cardactions{display:flex;gap:8px}.cardactions button{flex:1;padding:9px 7px;font-size:13px}
+.empty{grid-column:1/-1;text-align:center;padding:40px 18px;border:1px dashed #35583f;border-radius:20px;color:var(--muted)}.empty h3{color:var(--text);margin:0 0 6px}.empty p{margin:0 0 16px}
+.notice{display:flex;gap:12px;margin-top:23px;padding:15px;border:1px solid #31543a;border-radius:15px;background:#10251a;color:#b9cbbd;font-size:12px}
+footer{border-top:1px solid #ffffff13;padding:25px 0 35px;color:#879b8c;font-size:12px}.footerrow{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.overlay{position:fixed;inset:0;z-index:20;background:#020704ce;backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:16px}.overlay.open{display:flex}
+.modal{width:min(650px,100%);max-height:90vh;overflow:auto;background:#0c1c12;border:1px solid #31553c;border-radius:21px;box-shadow:0 30px 90px #0009}
+.modalhead{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#0c1c12f5;border-bottom:1px solid #ffffff13;padding:17px 21px}
+.modalhead h2{margin:0;font-size:20px}.close{width:35px;height:35px;border-radius:10px;border:1px solid var(--line);background:#172b1e;color:white;font-size:22px}
+.modalbody{padding:21px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.fieldgroup{display:flex;flex-direction:column;gap:7px;min-width:0}.fieldgroup.full{grid-column:1/-1}.fieldgroup label{font-weight:750;font-size:13px}
+.field{width:100%;background:#09170e;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--text)}.field:focus{outline:none;border-color:var(--green)}textarea.field{resize:vertical;min-height:95px}
+.hint{font-size:11px;color:var(--muted);font-weight:400}.modalfoot{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+.message{display:none;margin-top:13px;padding:11px 13px;border-radius:10px;font-size:13px}.message.show{display:block}.message.error{color:#ffc7c7;background:#381c1c;border:1px solid #743b3b}.message.success{color:#c3f6d1;background:#10301c;border:1px solid #316b43}
+.ratinggroup{display:flex;gap:6px}.ratinggroup button{width:43px;height:43px;border-radius:10px;border:1px solid #38523e;background:#102116;color:#647d6b;font-size:27px;padding:0}.ratinggroup button.selected{color:var(--gold);background:#302912;border-color:#8c7437}
+.rating-label{color:var(--muted);font-size:12px}.reviewteacher{display:flex;gap:12px;align-items:center;border-bottom:1px solid #ffffff13;padding-bottom:17px;margin-bottom:18px}.reviewteacher h3{margin:0;font-size:18px}.reviewteacher p{margin:3px 0 0;color:var(--muted);font-size:12px}
+.reviewlist{display:grid;gap:12px}.reviewitem{border:1px solid #294a35;background:#102218;border-radius:15px;padding:15px}.reviewtop{display:flex;justify-content:space-between;align-items:center;gap:10px}.reviewtop time{font-size:11px;color:var(--muted)}.reviewtext{white-space:pre-wrap;overflow-wrap:anywhere;color:#d5e3d9;margin:10px 0}.reviewmeta{display:flex;gap:7px;flex-wrap:wrap}.reviewmeta span{font-size:11px;border:1px solid #31543a;border-radius:8px;padding:4px 7px;color:#c0d8c7}
+.reportrow{display:flex;justify-content:flex-end;margin-top:12px}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;z-index:60;background:#173b25;border:1px solid #4c9861;border-radius:12px;padding:12px 18px;transition:.2s;max-width:90%;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:850px){.hero{grid-template-columns:1fr;padding-top:45px}.hero-card{max-width:520px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.wrap{width:calc(100% - 24px)}.nav{height:65px}.brand{font-size:19px}.status{display:none}.navright .btn{padding:9px 10px}.hero{padding:38px 0 24px;gap:23px}h1{font-size:43px;letter-spacing:-2px}.hero p{font-size:15px}.hero-card{padding:19px}.sectionhead{align-items:flex-start;flex-direction:column}.sectionhead h2{font-size:26px}.grid{grid-template-columns:1fr}.teacher{padding:17px}.description{min-height:0}.formgrid{grid-template-columns:1fr}.fieldgroup.full{grid-column:auto}.modalbody{padding:16px}.modalhead{padding:15px 16px}.modalfoot{flex-direction:column-reverse}.modalfoot button{width:100%}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#"><span class="logo">★</span><span>Friars<span>Rate</span></span></a>
+    <div class="navright"><div class="status"><span class="dot" id="statusDot"></span><span id="apiStatus">Connecting…</span></div><button class="btn primary" id="addTop">+ Add teacher</button></div>
+  </div>
+</header>
+
+<main>
+<div class="wrap hero">
+  <div>
+    <div class="eyebrow">✦ Student feedback, thoughtfully shared</div>
+    <h1>Good teaching<br>deserves to be <em>noticed.</em></h1>
+    <p>Discover teacher profiles, share constructive classroom feedback, and help build a more helpful learning community.</p>
+    <div class="actions"><button class="btn primary" id="browse">Explore teachers ↘</button><button class="btn" id="addHero">＋ Add a teacher</button></div>
+  </div>
+  <aside class="hero-card">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h3>Your community directory</h3><span class="pill">LIVE DIRECTORY</span></div>
+    <div class="stats"><div class="stat"><strong id="teacherCount">—</strong><span>Teacher profiles</span></div><div class="stat"><strong id="reviewCount">—</strong><span>Published reviews</span></div></div>
+    <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div style="display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:8px"><span>Shared community feedback</span><span style="color:var(--green)">Live directory ↗</span></div>
+  </aside>
+</div>
+
+<section class="wrap" id="directory">
+  <div class="sectionhead"><div><h2>Teacher directory</h2><p>Search by teacher name or subject.</p></div><button class="btn" id="refresh">↻ Refresh</button></div>
+  <div class="searchrow"><input class="search" id="search" aria-label="Search teachers" placeholder="Try a name or subject…" autocomplete="off"><button class="btn primary" id="searchBtn">Search</button></div>
+  <div class="grid" id="teacherGrid" aria-live="polite"><div class="empty"><h3>Loading directory…</h3><p>Connecting to the shared database.</p></div></div>
+  <div class="notice"><span>🛡️</span><div><strong style="color:#e3f4e7">Keep feedback fair and constructive.</strong> Talk about classroom experiences, teaching clarity, organisation and helpfulness. Do not post insults, rumours, personal details, or private information. Reviews are public. Reporting is a basic safeguard and does not guarantee immediate human review.</div></div>
+</section>
+</main>
+
+<footer><div class="wrap footerrow"><span>© <span id="year"></span> FriarsRate</span><span>Anonymous submissions · Be respectful · Think before you post</span></div></footer>
+
+<div class="overlay" id="teacherOverlay" role="dialog" aria-modal="true" aria-labelledby="teacherModalTitle">
+ <div class="modal">
+  <div class="modalhead"><h2 id="teacherModalTitle">Add a teacher</h2><button class="close" data-close="teacherOverlay" aria-label="Close">×</button></div>
+  <form class="modalbody" id="teacherForm">
+   <div class="formgrid">
+    <div class="fieldgroup full"><label for="teacherName">Teacher name *</label><input class="field" id="teacherName" maxlength="100" minlength="2" required placeholder="Enter the teacher's name"><span class="hint">Search the directory first to avoid duplicates.</span></div>
+    <div class="fieldgroup full"><label for="teacherSubjects">Subjects <span class="hint">(optional)</span></label><input class="field" id="teacherSubjects" maxlength="200" placeholder="e.g. Mathematics, Science"></div>
+    <div class="fieldgroup full"><label for="teacherDescription">Short description <span class="hint">(optional)</span></label><textarea class="field" id="teacherDescription" maxlength="500" placeholder="A brief, factual note about the subjects or classes…"></textarea></div>
+   </div>
+   <div class="message" id="teacherMessage" role="status"></div>
+   <div class="modalfoot"><button type="button" class="btn" data-close="teacherOverlay">Cancel</button><button class="btn primary" id="teacherSubmit" type="submit">Add teacher profile</button></div>
+  </form>
+ </div>
+</div>
+
+<div class="overlay" id="detailOverlay" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+ <div class="modal"><div class="modalhead"><h2 id="detailTitle">Teacher profile</h2><button class="close" data-close="detailOverlay" aria-label="Close">×</button></div><div class="modalbody" id="detailBody">Loading…</div></div>
+</div>
+
+<div class="overlay" id="reviewOverlay" role="dialog" aria-modal="true" aria-labelledby="reviewTitle">
+ <div class="modal">
+  <div class="modalhead"><h2 id="reviewTitle">Write a review</h2><button class="close" data-close="reviewOverlay" aria-label="Close">×</button></div>
+  <form class="modalbody" id="reviewForm">
+   <div class="reviewteacher"><div class="avatar" id="reviewAvatar">T</div><div><h3 id="reviewTeacherLabel">Teacher</h3><p>Your review will be anonymous to other visitors.</p></div></div>
+   <input type="hidden" id="reviewTeacherId">
+   <div class="formgrid">
+    <div class="fieldgroup full"><label>Overall rating *</label><div class="ratinggroup" data-rating="overall" aria-label="Overall rating"></div><div class="rating-label" id="overallLabel">Select a rating</div></div>
+    <div class="fieldgroup"><label>Teaching clarity *</label><div class="ratinggroup" data-rating="teaching" aria-label="Teaching clarity rating"></div></div>
+    <div class="fieldgroup"><label>Helpfulness *</label><div class="ratinggroup" data-rating="helpfulness" aria-label="Helpfulness rating"></div></div>
+    <div class="fieldgroup"><label>Organisation *</label><div class="ratinggroup" data-rating="organisation" aria-label="Organisation rating"></div></div>
+    <div class="fieldgroup full"><label for="reviewText">Your review *</label><textarea class="field" id="reviewText" required minlength="20" maxlength="2000" placeholder="Describe your classroom experience constructively (20–2000 characters)…"></textarea><span class="hint" id="reviewLength">0 / 2000 characters (minimum 20)</span></div>
+   </div>
+   <div class="message" id="reviewMessage" role="status"></div>
+   <div class="modalfoot"><button type="button" class="btn" data-close="reviewOverlay">Cancel</button><button class="btn primary" id="reviewSubmit" type="submit">Publish review</button></div>
+  </form>
+ </div>
+</div>
+
+<div class="overlay" id="reportOverlay" role="dialog" aria-modal="true" aria-labelledby="reportTitle">
+ <div class="modal">
+  <div class="modalhead"><h2 id="reportTitle">Report a review</h2><button class="close" data-close="reportOverlay" aria-label="Close">×</button></div>
+  <form class="modalbody" id="reportForm">
+   <input type="hidden" id="reportReviewId">
+   <div class="fieldgroup"><label for="reportReason">Why are you reporting this review? *</label><select class="field" id="reportReason" required><option value="">Choose a reason</option><option>Personal information</option><option>Harassment or insults</option><option>Threatening or abusive content</option><option>Spam or irrelevant content</option><option>Potentially false or harmful claim</option><option>Other concern</option></select></div>
+   <p class="hint">Reports are stored for review. Do not use reports to disagree with a rating.</p>
+   <div class="message" id="reportMessage" role="status"></div>
+   <div class="modalfoot"><button type="button" class="btn" data-close="reportOverlay">Cancel</button><button class="btn primary" id="reportSubmit" type="submit">Submit report</button></div>
+  </form>
+ </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+"use strict";
+
+/* Your deployed Cloudflare Worker */
+const API = "https://friarsrate-api.allena.workers.dev/";
+const $ = id => document.getElementById(id);
+const state = {teachers:[],ratings:{overall:0,teaching:0,helpfulness:0,organisation:0},selectedTeacher:null,loading:false};
+let toastTimer;
+
+function esc(value){
+ return String(value ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function initials(name){
+ return String(name||"T").trim().split(/\s+/).slice(0,2).map(x=>x[0]||"").join("").toUpperCase()||"T";
+}
+function showToast(text){
+ $("toast").textContent=text;$("toast").classList.add("show");
+ clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.remove("show"),3200);
+}
+function setMessage(id,text,type="error"){
+ const el=$(id);el.textContent=text;el.className="message show "+type;
+}
+function clearMessage(id){const el=$(id);el.textContent="";el.className="message";}
+function setStatus(online,text){
+ $("statusDot").classList.toggle("online",online);$("apiStatus").textContent=text;
+}
+function openModal(id){
+ $(id).classList.add("open");document.body.style.overflow="hidden";
+ const first=$(id).querySelector("input:not([type=hidden]),textarea,select,button");
+ if(first)setTimeout(()=>first.focus(),30);
+}
+function closeModal(id){
+ $(id).classList.remove("open");
+ if(!document.querySelector(".overlay.open"))document.body.style.overflow="";
+}
+document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>closeModal(b.dataset.close)));
+document.querySelectorAll(".overlay").forEach(o=>{
+ o.addEventListener("click",e=>{if(e.target===o)closeModal(o.id)});
+});
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape"){const opened=[...document.querySelectorAll(".overlay.open")];if(opened.length)closeModal(opened[opened.length-1].id);}
+});
+
+async function api(path,options={}){
+ const response=await fetch(API.replace(/\/+$/,"")+path,{
+  ...options,
+  headers:{"Content-Type":"application/json",...(options.headers||{})}
+ });
+ const raw=await response.text();
+ let data={};
+ try{data=raw?JSON.parse(raw):{};}catch{data={error:raw||"The server returned an unreadable response."};}
+ if(!response.ok)throw new Error(data.error||data.message||`Server error (${response.status})`);
+ return data;
+}
+function avg(t){
+ const n=Number(t.average_rating??t.average??t.avg_rating??0);
+ return Number.isFinite(n)?n:0;
+}
+function reviewCount(t){
+ return Number(t.review_count??t.reviews_count??t.total_reviews??0)||0;
+}
+function renderStars(rating){
+ const n=Math.max(0,Math.min(5,Math.round(Number(rating)||0)));
+ return "★".repeat(n)+"☆".repeat(5-n);
+}
+function renderTeachers(){
+ const query=$("search").value.trim().toLowerCase();
+ const teachers=state.teachers.filter(t=>
+  String(t.name||"").toLowerCase().includes(query)||
+  String(t.subjects||"").toLowerCase().includes(query)
+ );
+ $("teacherCount").textContent=state.teachers.length;
+ $("reviewCount").textContent=state.teachers.reduce((sum,t)=>sum+reviewCount(t),0);
+ const grid=$("teacherGrid");
+ if(!teachers.length){
+  grid.innerHTML=`<div class="empty"><h3>${query?"No matching teachers":"Your directory starts here"}</h3><p>${query?"Try a different name or subject.":"Add the first teacher profile to begin building FriarsRate."}</p><button class="btn primary" id="emptyAdd">${query?"Add a teacher instead":"＋ Add first teacher"}</button></div>`;
+  $("emptyAdd").addEventListener("click",openAddTeacher);
+  return;
+ }
+ grid.innerHTML=teachers.map(t=>{
+  const rating=avg(t),count=reviewCount(t);
+  return `<article class="teacher">
+   <div class="teacher-top"><div class="avatar">${esc(initials(t.name))}</div><div style="min-width:0"><h3>${esc(t.name)}</h3><div class="subject">${esc(t.subjects||"Subjects not specified")}</div></div></div>
+   <div class="ratingline"><span class="stars">${renderStars(rating)}</span><span class="score">${count?rating.toFixed(1):"—"}</span></div>
+   <div class="count">${count} ${count===1?"review":"reviews"}</div>
+   <p class="description">${esc(t.description||"Open this profile to read feedback or share a classroom experience.")}</p>
+   <div class="cardactions"><button class="btn" data-profile="${esc(t.id)}">View profile</button><button class="btn primary" data-review="${esc(t.id)}">＋ Review</button></div>
+  </article>`;
+ }).join("");
+ grid.querySelectorAll("[data-profile]").forEach(b=>b.addEventListener("click",()=>openProfile(b.dataset.profile)));
+ grid.querySelectorAll("[data-review]").forEach(b=>b.addEventListener("click",()=>openReview(b.dataset.review)));
+}
+async function loadTeachers(){
+ $("teacherGrid").innerHTML='<div class="empty"><h3>Loading directory…</h3><p>Fetching shared teacher profiles.</p></div>';
+ try{
+  const data=await api("/api/teachers?q="+encodeURIComponent($("search").value.trim()));
+  if(!Array.isArray(data.teachers))throw new Error("The API response did not contain a teacher list. Check that your Worker is deployed correctly.");
+  state.teachers=data.teachers;
+  setStatus(true,"API connected");
+  renderTeachers();
+ }catch(err){
+  setStatus(false,"Connection problem");
+  $("teacherGrid").innerHTML=`<div class="empty"><h3>Couldn't load the directory</h3><p>${esc(err.message)}<br><br>Check your Worker URL, deployment, and CORS settings.</p><button class="btn primary" id="retryLoad">Try again</button></div>`;
+  $("retryLoad").addEventListener("click",loadTeachers);
+  $("teacherCount").textContent="—";$("reviewCount").textContent="—";
+ }
+}
+function openAddTeacher(){
+ $("teacherForm").reset();clearMessage("teacherMessage");openModal("teacherOverlay");
+}
+$("addTop").addEventListener("click",openAddTeacher);
+$("addHero").addEventListener("click",openAddTeacher);
+$("browse").addEventListener("click",()=>$("directory").scrollIntoView({behavior:"smooth"}));
+$("refresh").addEventListener("click",loadTeachers);
+$("searchBtn").addEventListener("click",loadTeachers);
+let searchTimer;
+$("search").addEventListener("input",()=>{
+ clearTimeout(searchTimer);
+ searchTimer=setTimeout(()=>{
+  /* Search the API so newly added teachers are included. */
+  loadTeachers();
+ },250);
+});
+$("year").textContent=new Date().getFullYear();
+
+$("teacherForm").addEventListener("submit",async e=>{
+ e.preventDefault();clearMessage("teacherMessage");
+ const name=$("teacherName").value.trim();
+ if(name.length<2){setMessage("teacherMessage","Please enter a teacher name.");return;}
+ $("teacherSubmit").disabled=true;$("teacherSubmit").textContent="Adding…";
+ try{
+  /* Check the shared directory for an existing matching name. */
+  const check=await api("/api/teachers?q="+encodeURIComponent(name));
+  const found=(check.teachers||[]).some(t=>String(t.name||"").trim().toLowerCase()===name.toLowerCase());
+  if(found){setMessage("teacherMessage","A teacher with this name already exists. Search for their profile instead.");return;}
+  const result=await api("/api/teachers",{
+   method:"POST",
+   body:JSON.stringify({
+    name,
+    subjects:$("teacherSubjects").value.trim(),
+    description:$("teacherDescription").value.trim()
+   })
+  });
+  closeModal("teacherOverlay");showToast("Teacher profile added!");
+  $("search").value="";
+  await loadTeachers();
+  const id=result.teacher?.id??result.id;
+  if(id!==undefined&&id!==null)openProfile(String(id));
+ }catch(err){setMessage("teacherMessage",err.message||"Couldn't add the teacher.");}
+ finally{$("teacherSubmit").disabled=false;$("teacherSubmit").textContent="Add teacher profile";}
+});
+
+async function openProfile(id){
+ const teacher=state.teachers.find(t=>String(t.id)===String(id));
+ if(!teacher){showToast("That teacher wasn't found. Refresh and try again.");return;}
+ state.selectedTeacher=teacher;
+ $("detailTitle").textContent=teacher.name||"Teacher profile";
+ $("detailBody").innerHTML=`<div class="reviewteacher"><div class="avatar">${esc(initials(teacher.name))}</div><div><h3>${esc(teacher.name)}</h3><p>${esc(teacher.subjects||"Subjects not specified")}</p></div></div>
+ <p style="color:#c1d2c6">${esc(teacher.description||"No description has been added.")}</p>
+ <div class="ratingline"><span class="stars">${renderStars(avg(teacher))}</span><span class="score">${reviewCount(teacher)?avg(teacher).toFixed(1):"—"}</span><span class="count">${reviewCount(teacher)} reviews</span></div>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;margin:18px 0"><button class="btn primary" id="detailReview">＋ Write a review</button><button class="btn" id="detailRefresh">↻ Refresh reviews</button></div>
+ <h3 style="margin:22px 0 12px">Community reviews</h3><div class="reviewlist" id="reviewList"><div class="empty"><p>Loading reviews…</p></div></div>`;
+ $("detailReview").addEventListener("click",()=>openReview(String(teacher.id)));
+ $("detailRefresh").addEventListener("click",()=>loadReviews(teacher.id));
+ openModal("detailOverlay");
+ await loadReviews(teacher.id);
+}
+async function loadReviews(id){
+ const list=$("reviewList");if(!list)return;
+ list.innerHTML='<div class="empty"><p>Loading reviews…</p></div>';
+ try{
+  const data=await api("/api/teachers/"+encodeURIComponent(id)+"/reviews");
+  const reviews=Array.isArray(data.reviews)?data.reviews:[];
+  if(!reviews.length){list.innerHTML='<div class="empty"><h3>No reviews yet</h3><p>Be constructive and help start the conversation.</p></div>';return;}
+  list.innerHTML=reviews.map(r=>{
+   const rating=Number(r.overall_rating??r.rating??0)||0;
+   const date=r.created_at?new Date(r.created_at):null;
+   const dateText=date&&!isNaN(date)?date.toLocaleDateString():"";
+   return `<article class="reviewitem">
+    <div class="reviewtop"><span class="stars">${renderStars(rating)}</span><time>${esc(dateText)}</time></div>
+    <div class="reviewtext">${esc(r.review_text||r.text||"")}</div>
+    <div class="reviewmeta"><span>Teaching: ${esc(r.teaching_rating??"—")}/5</span><span>Helpfulness: ${esc(r.helpfulness_rating??"—")}/5</span><span>Organisation: ${esc(r.organisation_rating??"—")}/5</span></div>
+    <div class="reportrow"><button class="btn small" data-report="${esc(r.id)}">⚑ Report review</button></div>
+   </article>`;
+  }).join("");
+  list.querySelectorAll("[data-report]").forEach(b=>b.addEventListener("click",()=>openReport(b.dataset.report)));
+ }catch(err){list.innerHTML=`<div class="empty"><h3>Couldn't load reviews</h3><p>${esc(err.message)}</p></div>`;}
+}
+
+function openReview(id){
+ const teacher=state.teachers.find(t=>String(t.id)===String(id));
+ if(!teacher){showToast("Teacher not found. Refresh the directory.");return;}
+ state.ratings={overall:0,teaching:0,helpfulness:0,organisation:0};
+ $("reviewTeacherId").value=teacher.id;
+ $("reviewTeacherLabel").textContent=teacher.name;
+ $("reviewAvatar").textContent=initials(teacher.name);
+ $("reviewText").value="";$("reviewLength").textContent="0 / 2000 characters (minimum 20)";
+ clearMessage("reviewMessage");
+ document.querySelectorAll(".ratinggroup").forEach(group=>{
+  group.innerHTML="";
+  for(let i=1;i<=5;i++){
+   const b=document.createElement("button");
+   b.type="button";b.textContent="★";b.setAttribute("aria-label",i+" out of 5 stars");
+   b.addEventListener("click",()=>setRating(group.dataset.rating,i));
+   group.appendChild(b);
+  }
+ });
+ updateRatings();closeModal("detailOverlay");openModal("reviewOverlay");
+}
+function setRating(type,value){state.ratings[type]=value;updateRatings();}
+function updateRatings(){
+ document.querySelectorAll(".ratinggroup").forEach(group=>{
+  const selected=state.ratings[group.dataset.rating]||0;
+  [...group.children].forEach((b,i)=>{
+   b.classList.toggle("selected",i<selected);
+   b.setAttribute("aria-pressed",String(i<selected));
+  });
+ });
+ $("overallLabel").textContent=state.ratings.overall?state.ratings.overall+" out of 5 stars":"Select a rating";
+}
+$("reviewText").addEventListener("input",()=>{
+ $("reviewLength").textContent=$("reviewText").value.length+" / 2000 characters (minimum 20)";
+});
+$("reviewForm").addEventListener("submit",async e=>{
+ e.preventDefault();clearMessage("reviewMessage");
+ const text=$("reviewText").value.trim();
+ if(Object.values(state.ratings).some(v=>v<1||v>5)){setMessage("reviewMessage","Please select all four ratings.");return;}
+ if(text.length<20||text.length>2000){setMessage("reviewMessage","Your review must be between 20 and 2000 characters.");return;}
+ $("reviewSubmit").disabled=true;$("reviewSubmit").textContent="Publishing…";
+ try{
+  await api("/api/reviews",{
+   method:"POST",
+   body:JSON.stringify({
+    teacher_id:$("reviewTeacherId").value,
+    overall_rating:state.ratings.overall,
+    teaching_rating:state.ratings.teaching,
+    helpfulness_rating:state.ratings.helpfulness,
+    organisation_rating:state.ratings.organisation,
+    review_text:text
+   })
+  });
+  const teacherId=$("reviewTeacherId").value;
+  closeModal("reviewOverlay");showToast("Review published successfully.");
+  await loadTeachers();
+  await openProfile(teacherId);
+ }catch(err){setMessage("reviewMessage",err.message||"Couldn't publish your review.");}
+ finally{$("reviewSubmit").disabled=false;$("reviewSubmit").textContent="Publish review";}
+});
+
+function openReport(id){
+ $("reportForm").reset();$("reportReviewId").value=id;clearMessage("reportMessage");openModal("reportOverlay");
+}
+$("reportForm").addEventListener("submit",async e=>{
+ e.preventDefault();clearMessage("reportMessage");
+ const reason=$("reportReason").value;
+ if(!reason){setMessage("reportMessage","Please choose a reason.");return;}
+ $("reportSubmit").disabled=true;$("reportSubmit").textContent="Sending…";
+ try{
+  await api("/api/reports",{
+   method:"POST",
+   body:JSON.stringify({review_id:$("reportReviewId").value,reason})
+  });
+  closeModal("reportOverlay");showToast("Report submitted. Thank you.");
+  const teacherId=state.selectedTeacher?.id;
+  if(teacherId!==undefined)await loadReviews(teacherId);
+  await loadTeachers();
+ }catch(err){setMessage("reportMessage",err.message||"Couldn't submit the report.");}
+ finally{$("reportSubmit").disabled=false;$("reportSubmit").textContent="Submit report";}
+});
+
+/* Initial connection */
+loadTeachers();
+</script>
+</body>
+</html>
